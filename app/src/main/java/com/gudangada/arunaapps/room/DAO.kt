@@ -13,7 +13,9 @@ interface DAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPost(postsItem: Model)
 
-    @Query("SELECT * FROM return_value WHERE title LIKE :query_")
+
+    //@Query("SELECT * FROM return_value WHERE title LIKE :query_")
+    @Query("SELECT * FROM return_value WHERE title LIKE '%' || :query_ || '%'")
     fun getPostWithQuery(query_: String): Single<List<Model>>
 
     @Query("SELECT * FROM return_value")
